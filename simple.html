@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>간단한 테스트</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .status {
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .dark-mode {
+            background: #333;
+            color: white;
+        }
+        .dark-mode .container {
+            background: #444;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 서버 연결 테스트</h1>
+        
+        <div class="status">
+            ✅ 서버가 정상적으로 실행되고 있습니다!
+        </div>
+        
+        <p><strong>현재 시간:</strong> <span id="time"></span></p>
+        <p><strong>포트:</strong> 3000</p>
+        <p><strong>주소:</strong> http://localhost:3000/</p>
+        
+        <h2>🧪 기능 테스트</h2>
+        
+        <button onclick="toggleDarkMode()">🌙 다크모드 토글</button>
+        <button onclick="testLocalStorage()">💾 localStorage 테스트</button>
+        <button onclick="goToMainApp()">📚 메인 앱으로 이동</button>
+        
+        <div id="result"></div>
+        
+        <h2>📋 문제 해결 단계</h2>
+        <ol>
+            <li>이 페이지가 보인다면 서버는 정상 작동 중</li>
+            <li>다크모드 버튼을 클릭해서 JavaScript 작동 확인</li>
+            <li>"메인 앱으로 이동" 버튼을 클릭해서 메인 앱 접속</li>
+            <li>문제가 지속되면 브라우저 콘솔(F12) 확인</li>
+        </ol>
+    </div>
+    
+    <script>
+        // 현재 시간 표시
+        document.getElementById('time').textContent = new Date().toLocaleString('ko-KR');
+        
+        // 다크모드 토글
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const result = document.getElementById('result');
+            result.innerHTML = '<div class="status">✅ 다크모드 토글 성공!</div>';
+        }
+        
+        // localStorage 테스트
+        function testLocalStorage() {
+            try {
+                localStorage.setItem('test', 'success');
+                const test = localStorage.getItem('test');
+                localStorage.removeItem('test');
+                
+                const result = document.getElementById('result');
+                result.innerHTML = '<div class="status">✅ localStorage 정상 작동!</div>';
+            } catch (error) {
+                const result = document.getElementById('result');
+                result.innerHTML = '<div class="status error">❌ localStorage 오류: ' + error.message + '</div>';
+            }
+        }
+        
+        // 메인 앱으로 이동
+        function goToMainApp() {
+            window.location.href = '/index.html';
+        }
+        
+        console.log('✅ 테스트 페이지가 정상적으로 로드되었습니다.');
+    </script>
+</body>
+</html>

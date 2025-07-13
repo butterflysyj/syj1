@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimal Test</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+</head>
+<body class="bg-slate-50">
+    <div id="root"></div>
+    
+    <script type="module">
+        import React from 'https://esm.sh/react@^19.1.0';
+        import ReactDOM from 'https://esm.sh/react-dom@19.1.0/client';
+        
+        console.log('Script loading...');
+        
+        const TestApp = () => {
+            console.log('TestApp rendering...');
+            return React.createElement('div', {
+                className: 'p-8 text-center'
+            }, 
+                React.createElement('h1', {
+                    className: 'text-2xl font-bold text-blue-600'
+                }, 'Test App Working!'),
+                React.createElement('p', {
+                    className: 'mt-4 text-gray-600'
+                }, 'React is rendering successfully.')
+            );
+        };
+        
+        const rootElement = document.getElementById('root');
+        if (rootElement) {
+            console.log('Root element found, rendering...');
+            const root = ReactDOM.createRoot(rootElement);
+            root.render(React.createElement(TestApp));
+        } else {
+            console.error('Root element not found!');
+        }
+    </script>
+</body>
+</html>
